@@ -30,6 +30,7 @@ class CfgFunctions
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
+	#include "build\Functions.hpp"
 };
 
 
@@ -119,7 +120,7 @@ class CfgSounds
 	class pointsLootSound
 	{
 		name = "Points Loot Audio";
-		sound[] = {"\sound\lootPointsAudio.ogg", 35, 1, 100};
+		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
 		titles[] = {0,""};
 	};
 };
@@ -362,6 +363,22 @@ class Params
 		};
 		default = 2;
 		function = "bis_fnc_paramReviveRequiredItems";
+	};
+
+	class RESPAWN_TICKETS
+	{
+		title = "Tickets";
+		values[] = {0, 5, 10, 15, 20};
+		texts[] = {"0", "5", "10", "15", "20"};
+		default = 0;
+	};
+
+	class RESPAWN_TIME
+	{
+		title = "Respawn Time";
+		values[] = {0, 5, 10, 20, 30};
+		texts[] = {"0", "5", "10", "20", "30"};
+		default = 10;
 	};
 
 };
