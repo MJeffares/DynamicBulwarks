@@ -26,6 +26,7 @@ publicVariable "PISTOL_HOSTILES";
 publicVariable "DOWN_TIME";
 publicVariable "RESPAWN_TICKETS";
 publicVariable "RESPAWN_TIME";
+publicVariable "REMOVE_ITEMREFUND";
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;

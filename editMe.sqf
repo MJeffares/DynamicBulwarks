@@ -28,6 +28,8 @@ PLAYER_STARTEQUIPMENT = ("PLAYER_STARTEQUIPMENT" call BIS_fnc_getParamValue);
 PLAYER_STARTVISION = ("PLAYER_STARTVISION" call BIS_fnc_getParamValue);
 PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
+REMOVE_ITEMREFUND = if ("REMOVE_ITEMREFUND" call BIS_fnc_getParamValue == 1) then {true} else {false};
+
 
 /* Respawn */
 RESPAWN_TIME = ("RESPAWN_TIME" call BIS_fnc_getParamValue);
@@ -66,26 +68,46 @@ BULWARK_SUPPORTITEMS = [
     [1950, "Paratroopers",  "paraDrop"],
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM",   "armaKart"]
+    [6666, "ARMAKART TM",   "armaKart"],
+    [4000, "Ghosthawk Fire Support (player)", "chopperGunner"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */
+
 BULWARK_BUILDITEMS = [
-    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0],
-    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0],
-    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0],
-    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0],
-    [400,  "Ramp",                 "Land_VR_Slope_01_F",                0],
-    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0],
-    [750,  "Ladder",               "Land_PierLadder_F",                 0],
-    [800,  "Storage box small",    "Box_NATO_Support_F",                0],
-    [1000, "Hallogen Lamp",        "Land_LampHalogen_F",              180],
-    [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0],
-    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0],
-    [2500, "Machine Gun",          "B_HMG_01_F",                        0],
-    [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0],
-    [3000, "Small Bunker",         "Land_BagBunker_Small_F",            0],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180]
+    [50,  	"Kerb",    	                    "Land_ConcreteKerb_02_2m_F",        0],
+    [50,  	"Plank",    	                "Land_Plank_01_8m_F",               0],
+    [50,  	"Short Sandbag Barricade",    	"Land_BagFence_Short_F",            0],
+    [100,  	"Long Sandbag Barricade",     	"Land_BagFence_Long_F",             0],
+    [100,   "Sandbag Wall",                 "Land_SandbagBarricade_01_F",       0],
+    [150,   "Sandbag Wall with hole",       "Land_SandbagBarricade_01_hole_F",  0],
+	[500,  	"Small Sandbag Bunker",  		"Land_BagBunker_Small_F",           0],
+	[1500, 	"Large Sandbag Bunker",  		"Land_BagBunker_Large_F",           0],
+    [250,  	"H Barrier",       				"Land_HBarrier_3_F",                0],
+    [500,	"Double H Barrier",				"Land_HBarrierWall4_F",             0],
+	[2000, 	"H Barrier Bunker",     		"Land_HBarrierTower_F",             0],
+	[500, 	"Short Concrete Wall",			"Land_CncWall1_F",                  0],
+	[1000, 	"Long Concrete Wall",			"Land_CncWall4_F",                  0],
+	[1000, 	"Hexagonal Concrete Bunker",	"Land_PillboxBunker_01_hex_F",      0],
+	[2000, 	"Big Concrete Bunker",			"Land_PillboxBunker_01_big_F",      0],
+	[500, 	"Concrete Shelter",				"Land_CncShelter_F",                0],
+    [2500, 	"Guard Tower",          		"Land_Cargo_Patrol_V1_F",           0],
+	[7500, 	"Large Guard Tower",	   		"Land_Cargo_Tower_V1_F",            180],
+	[5000, 	"Airport Tower", 	   			"Land_Airport_Tower_F",             180],
+    [750,   "Ladder",                       "Land_PierLadder_F",                0], 	
+    [1500, 	"Stairs 1-Story",  			    "Land_GH_Stairs_F",                 0],
+	[1500, 	"Stairs 3-Story",  			    "Land_FireEscape_01_short_F",       0],
+	[500,  	"Storage box small",    		"Box_NATO_Support_F",               0],
+    [1000, 	"Storage box large",    		"Box_NATO_AmmoVeh_F",               0],
+    [100,   "Hallogen Lamp",                "Land_LampHalogen_F",               180],
+    [100,   "Portable Light",               "Land_PortableLight_double_F",      0],
+    [2500, 	"Machine Gun",          		"B_HMG_01_F",                       0],
+    [2500, 	"Machine Gun (raised)", 		"B_HMG_01_high_F",                  0],
+	[3500, 	"Grenade Machine Gun",          "B_GMG_01_F",                       0],
+	[2500, 	"Grenade Machine Gun (raised)", "B_GMG_01_high_F",                  0],
+	[2000, 	"Mortar", 						"B_Mortar_01_F",                    0],
+	[2500, 	"Static Titan AA",          	"B_static_AA_F",                    0],
+    [2500, 	"Static Titan AT", 				"B_static_AT_F",                    0]
 ];
 
 /* Time of Day*/

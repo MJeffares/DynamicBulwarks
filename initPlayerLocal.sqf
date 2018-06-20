@@ -3,6 +3,8 @@ player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 "START_KILLPOINTS" call BIS_fnc_getParamValue;
 
+player setVariable ["In_Support", false, true];
+
 player addEventHandler ['Respawn',{
     player setCustomAimCoef 0.2;
     player setUnitRecoilCoefficient 0.5;

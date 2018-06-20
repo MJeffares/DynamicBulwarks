@@ -26,6 +26,9 @@ switch (_type) do {
         [] remoteExec ["supports_fnc_ragePack", _player];
     };
     case ("armaKart"): {
-    [_player] call supports_fnc_armaKart;
+        [_player] call supports_fnc_armaKart;
+    };
+    case ("chopperGunner"): {
+        [_player] call supports_fnc_chopperGunner;
     };
 };
