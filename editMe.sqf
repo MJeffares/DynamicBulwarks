@@ -69,7 +69,9 @@ BULWARK_SUPPORTITEMS = [
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
     [6666, "ARMAKART TM",   "armaKart"],
-    [4000, "Ghosthawk Fire Support (player)", "chopperGunner"]
+    [40, "UH-80 Ghosthawk Fire Support (player)", "ghosthawkGunner"],
+    [40, "AH-99 Blackfoot Fire Support (player)", "blackfootGunner"],
+    [40, "V-44 X Blackfish Fire Support (player)", "blackfishGunner"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */

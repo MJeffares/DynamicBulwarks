@@ -9,6 +9,6 @@ class supports
         class airStrike {};
         class ragePack {};
         class armaKart {};
-        class chopperGunner {};
+        class fireSupport {};
     };
 };
