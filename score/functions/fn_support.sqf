@@ -40,28 +40,14 @@ switch (_type) do {
     };
     case ("blackfootAI"): {
         [_player, true, _aircraft, _target, [], 200, BULWARK_RADIUS + 75] call supports_fnc_fireSupport;
-        //[_player, _target, 200, BULWARK_RADIUS + 75, 70, _aircraft, 'nil', 60, true] call supports_fnc_fireSupport;
     };
     case ("blackfootGunner"): {
         [_player, false, _aircraft, _target, [], 200, BULWARK_RADIUS + 75] call supports_fnc_fireSupport;
-        //[_player, _target, 200, BULWARK_RADIUS + 75, 70, _aircraft, 'nil', 60, true] call supports_fnc_fireSupport;
+    };
+    case ("blackfishAI"): {
+        [_player, true, _aircraft, _target, [1], 250, BULWARK_RADIUS + 500] call supports_fnc_fireSupport;
     };
     case ("blackfishGunner"): {
-        [_player, false, _aircraft, _target, [], 400, BULWARK_RADIUS + 500] call supports_fnc_fireSupport;
-        //[_player, _target, 400, BULWARK_RADIUS + 500, 140, _aircraft, '1', 60, true] call supports_fnc_fireSupport;
+        [_player, false, _aircraft, _target, [1], 250, BULWARK_RADIUS + 500] call supports_fnc_fireSupport;
     };
 };
-
-
-// params [
-// 	"_player",
-// 	["_aiControlled", true, [true]],
-// 	"_aircraft",
-// 	"_targetPos",
-// 	["_aircraftSeat", [], [[]], [0, 1, 2]],
-// 	["_targetHeight", 100, [1]],
-// 	["_targetRadius", 200, [1]],
-// 	["_time", 60, [1]],
-// 	["_spotting", true, [true]],
-// 	["_returnPlace", true, [true]]
-// ];

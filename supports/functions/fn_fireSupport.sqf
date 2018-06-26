@@ -8,18 +8,15 @@
 
 /**
 * TODO: 
-* remove ALL items from vehicles
-* disable take control /co-pilot
-* limit loadout of vehicles
-* AI control option
 * aircraft selection (kajman, huron, huron with gmg "attachto'd", Y-32 Xi'an,)
 * handle multiple players in vehicle eg v-44 ??
-* infinte ammo option
 * infinite time option
 * add scroll wheel action to return to bulwark
+* use bounding boxes instead of target markers for spotting
 **/
 
-params ["_player",
+params [
+	"_player",
 	["_aiControlled", true, [true]],
 	"_aircraft",
 	"_targetPos",
@@ -27,6 +24,7 @@ params ["_player",
 	["_targetHeight", 100, [1]],
 	["_targetRadius", 200, [1]],
 	["_time", 60, [1]],
+	["_infAmmo", true, [true]],
 	["_spotting", true, [true]],
 	["_returnPlace", true, [true]]
 ];
@@ -51,13 +49,32 @@ _pilot = _pilotGroup createUnit ["B_Helipilot_F", _aircraftStartPos, [], 0, "NON
 _pilot allowFleeing 0;
 _pilot moveInDriver _vehicle;
 
+// lock copilot from "take controls"
+if (isCopilotEnabled _vehicle) then {
+    _vehicle enableCopilot false;
+};
+
 // Empty the vehicles inventory
 clearWeaponCargoGlobal _vehicle;
 clearMagazineCargoGlobal _vehicle;
 clearBackpackCargoGlobal _vehicle;
 clearItemCargoGlobal _vehicle;
 
-// Create waypoint for chopper
+// Empty the plyons from the vehicle
+{ 
+	_vehicle removeWeaponGlobal getText (
+		configFile 
+		>> "CfgMagazines" 
+		>> _x 
+		>> "pylonWeapon") 
+} forEach getPylonMagazines _vehicle;
+
+// Add event handler for infinite ammo
+if (_infAmmo) then {
+	_vehicle addEventHandler["Fired", {(_this select 0) setVehicleAmmo 1}];
+};
+
+// Create waypoint for vehicle
 _wp = _pilotGroup addWaypoint [_targetPos , 0];
 _wp setWaypointType "LOITER";
 _wp setWaypointLoiterType "CIRCLE_L";
@@ -69,9 +86,6 @@ _pilot setCombatMode "RED";
 _pilot setbehaviour "CARELESS";
 _pilot disableAI "AUTOTARGET";
 
-// Save where the player was when they called in support
-_playerLocation = (getPosASL _player) vectorAdd [0,0,0.2]; 
-
 // Vehicle will move at full speed until it gets closer to the AO
 waitUntil { (_vehicle distance2D _targetPos ) < (_targetRadius + 400) };
 _wp setWayPointSpeed "LIMITED";
@@ -81,8 +95,13 @@ _pilotGroup setSpeedMode "LIMITED";
 // Wait until the vehicel is close to the AO before moving in the gunner / player
 waitUntil { (_vehicle distance2D _targetPos ) < (_targetRadius + 50) };
 
+// Save where the player was when they called in support
+_playerLocation = (getPosASL _player) vectorAdd [0,0,0.2]; 
+
 _gunner = ObjNull;
 if (_aiControlled) then {
+
+	// Create AI gunner
 	_gunnerGroup = createGroup west;
 	_gunner = _gunnerGroup createUnit ["B_Helipilot_F", _aircraftStartPos, [], 0, "NONE"];
 	_gunner allowFleeing 0;
@@ -93,9 +112,9 @@ if (_aiControlled) then {
     _gunner setSkill ["spotTime", 		1.0];
 	_gunner setCombatMode "RED";
 	_gunner setbehaviour "COMBAT";
-
 	_gunner setVariable ["Owner", _player, true];
 
+	// Move gunner into vehicle
 	if (count _aircraftSeat == 0) then {
 		[_gunner, _vehicle] remoteExec ["moveInGunner", 0];
 	}
@@ -104,6 +123,7 @@ if (_aiControlled) then {
 	};
 } else {
 	
+	// Move player into vehicle
 	if (count _aircraftSeat == 0) then {
 		[_player, _vehicle] remoteExec ["moveInGunner", 0];
 	}
@@ -132,6 +152,24 @@ if (_aiControlled) then {
 						false
 					];
 				};
+
+				if ((side _x) == west) then {
+					drawIcon3D [
+						"\a3\ui_f\data\IGUI\Cfg\Targeting\MarkedTarget_ca.paa",
+						[0,0,1,1],
+						(visiblePosition _x vectorAdd [0, 0, 1]),
+						1,
+						1,
+						45,
+						"",
+						1,
+						0.02, 
+						"TahomaB",
+						"center",
+						false
+					];
+				};
+
 			} forEach allUnits;
 		}];
 	};
@@ -143,9 +181,8 @@ _timer = _time spawn {
 	if (true) exitwith{ true};
 };
 
-_supportActive = true;
-
 // While support is active
+_supportActive = true;
 while {_supportActive} do {
 
 	// If player controlled we keep the player in the vehicle
@@ -182,11 +219,9 @@ if !(_aiControlled) then {
 
 	if (_returnPlace) then {
 		_player setPosASL _playerLocation;
-		hint "return to prev";
 	} else {
 		_newLoc = [bulwarkBox] call bulwark_fnc_findPlaceAround;
 		_player setPosASL _newLoc;
-		hint "BULWARK";
 	};
 	_player setVariable ["In_Support", false, true];
 };
@@ -197,7 +232,6 @@ _wp setWaypointType "MOVE";
 _wp setWayPointSpeed "FULL";
 _wp setWaypointCompletionRadius 100;
 _pilotGroup setCurrentWaypoint _wp;
-_vehicle limitSpeed 1000;
 
 // Delete the chopper once it is out of view
 waitUntil { unitReady _vehicle };

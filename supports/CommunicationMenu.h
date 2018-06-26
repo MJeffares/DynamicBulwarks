@@ -90,7 +90,7 @@ class blackfootAI
 {
     text = "AH-99 Blackfoot Fire Support (AI)";
     submenu = "";
-    expression = "[this select 0, bulwarkCity, 'blackfootAI', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
+    expression = "[_this select 0, bulwarkCity, 'blackfootAI', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
@@ -108,11 +108,22 @@ class blackfootGunner
     removeAfterExpressionCall = 1;
 };
 
+class blackfishAI
+{
+    text = "V-44 X Blackfish Fire Support (AI)";
+    submenu = "";
+    expression = "[_this select 0, bulwarkCity, 'blackfishAI', 'B_T_VTOL_01_armed_F'] remoteExec ['killPoints_fnc_support', 2];";
+    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
+    cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};
+
 class blackfishGunner
 {
     text = "V-44 X Blackfish Fire Support (Player)";
     submenu = "";
-    expression = "[_this select 0, bulwarkCity, 'blackfootGunner', 'B_T_VTOL_01_armed_F'] remoteExec ['killPoints_fnc_support', 2];";
+    expression = "[_this select 0, bulwarkCity, 'blackfishGunner', 'B_T_VTOL_01_armed_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";

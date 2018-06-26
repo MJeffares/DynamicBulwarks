@@ -13,7 +13,9 @@ if (isServer) then {
     if (isPlayer _instigator) then {
         [_instigator, SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
     } else {
-        //(_instigator getVariable "Owner")
-        [(_instigator getVariable "Owner"), SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
+        _player = _instigator getVariable["Owner", objNull];
+        if(!isNull _player) then {
+            [_player, SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
+        };
     };
 };
