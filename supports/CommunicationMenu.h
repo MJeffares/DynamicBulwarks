@@ -20,6 +20,17 @@ class reconUAV
     removeAfterExpressionCall = 1;
 };
 
+class reconSuperUAV
+{
+    text = "Super Recon UAV";
+    submenu = "";
+    expression = "[_this select 0, _this select 1, 'reconSuperUAV', 'B_UAV_02_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
+    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\defend_ca.paa";
+    cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};
+	
 class airStrike
 {
     text = "Missle CAS";
@@ -53,35 +64,57 @@ class armaKart
     removeAfterExpressionCall = 1;
 };
 
+class ghosthawkAI
+{
+    text = "UH-80 Ghosthawk Fire Support (AI)";
+    submenu = "";
+    expression = "[_this select 0, bulwarkCity, 'ghosthawkAI', 'B_Heli_Transport_01_F'] remoteExec ['killPoints_fnc_support', 2];";
+    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
+    cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};
+
 class ghosthawkGunner
 {
-    text = "UH-80 Ghosthawk Fire Support (player)";
+    text = "UH-80 Ghosthawk Fire Support (Player)";
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'ghosthawkGunner', 'B_Heli_Transport_01_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;
-}
+};
+
+class blackfootAI
+{
+    text = "AH-99 Blackfoot Fire Support (AI)";
+    submenu = "";
+    expression = "[this select 0, bulwarkCity, 'blackfootAI', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
+    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
+    cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};
 
 class blackfootGunner
 {
-    text = "AH-99 Blackfoot Fire Support (player)";
+    text = "AH-99 Blackfoot Fire Support (Player)";
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'blackfootGunner', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;
-}
+};
 
 class blackfishGunner
 {
-    text = "V-44 X Blackfish Fire Support (player)";
+    text = "V-44 X Blackfish Fire Support (Player)";
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'blackfootGunner', 'B_T_VTOL_01_armed_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;
-}
+};

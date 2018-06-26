@@ -6,6 +6,7 @@ class supports
         class supplyDrop {};
         class paraTroop {};
         class reconUAV {};
+        class reconSuperUAV {};
         class airStrike {};
         class ragePack {};
         class armaKart {};

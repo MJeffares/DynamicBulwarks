@@ -69,13 +69,15 @@ BULWARK_SUPPORTITEMS = [
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
     [6666, "ARMAKART TM",   "armaKart"],
-    [40, "UH-80 Ghosthawk Fire Support (player)", "ghosthawkGunner"],
-    [40, "AH-99 Blackfoot Fire Support (player)", "blackfootGunner"],
-    [40, "V-44 X Blackfish Fire Support (player)", "blackfishGunner"]
+    [10, "Super Recon UAV", "reconSuperUAV"],
+    [40, "UH-80 Ghosthawk Fire Support (AI)", "ghosthawkAI"],
+    [40, "UH-80 Ghosthawk Fire Support (Player)", "ghosthawkGunner"],
+    [40, "AH-99 Blackfoot Fire Support (AI)", "blackfootAI"],
+    [40, "AH-99 Blackfoot Fire Support (Player)", "blackfootGunner"],
+    [40, "V-44 X Blackfish Fire Support (Player)", "blackfishGunner"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */
-
 BULWARK_BUILDITEMS = [
     [50,  	"Kerb",    	                    "Land_ConcreteKerb_02_2m_F",        0],
     [50,  	"Plank",    	                "Land_Plank_01_8m_F",               0],

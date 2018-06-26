@@ -12,5 +12,8 @@ if (isServer) then {
     _instigator = _this select 3;
     if (isPlayer _instigator) then {
         [_instigator, SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
+    } else {
+        //(_instigator getVariable "Owner")
+        [(_instigator getVariable "Owner"), SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
     };
 };

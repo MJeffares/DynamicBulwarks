@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=124;
+		nextID=129;
 	};
 	class MarkerIDProvider
 	{
@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={-32.205563,27.549696,39.031971};
-		dir[]={0.87327224,-0.48538041,-0.044646226};
-		up[]={0.48488346,0.87421483,-0.024787761};
-		aside[]={-0.051062435,-1.0537151e-006,-0.99879688};
+		dir[]={0.52761436,-0.53272057,-0.66183341};
+		up[]={0.33215663,0.84619844,-0.41665027};
+		aside[]={-0.78201318,-1.1400189e-006,-0.62342441};
 	};
 };
 binarizationWanted=0;
@@ -32,7 +32,6 @@ addons[]=
 	"A3_Characters_F_Exp_Civil",
 	"A3_Characters_F_Exp",
 	"A3_Ui_F",
-	"A3_Modules_F_Intel",
 	"A3_Modules_F_Curator_Curator",
 	"A3_Structures_F_Naval_Piers"
 };
@@ -40,7 +39,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=7;
+		items=6;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -71,19 +70,12 @@ class AddonsMetaData
 		};
 		class Item4
 		{
-			className="A3_Modules_F";
-			name="Arma 3 Alpha - Scripted Modules";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item5
-		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item6
+		class Item5
 		{
 			className="A3_Structures_F";
 			name="Arma 3 - Buildings and Structures";
@@ -236,7 +228,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=13;
+		items=12;
 		class Item0
 		{
 			dataType="Group";
@@ -748,116 +740,6 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={41.681,0,23.445};
-			};
-			id=115;
-			type="ModuleCreateDiaryRecord_F";
-			atlOffset=63.53096;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCreateDiaryRecord_F_PresetTitle";
-					expression="_this setVariable ['PresetTitle',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Mission";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCreateDiaryRecord_F_Title";
-					expression="_this setVariable ['Title',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="About";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCreateDiaryRecord_F_Description";
-					expression="_this setVariable ['Description',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="You are unarmed and there are hostile untis moving towards you. Survive for as many waves as possible." \n "<br />" \n "<br /> " \n "Search buildings for weapons, equipment and supplies." \n "<br /> " \n "<br /> " \n "Kill enemies to earn points to spend at the Bulwark Box. Points can be used to purchase Building Supplies and Supports. Purchased Supports can be used via the Supports menu (0 - 8 on keyboard)." \n "<br />" \n "<br /> " \n "If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. Medikits can also be broken into 4 First Aid Kits from the scroll menu.";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleCreateDiaryRecord_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ModuleCreateDiaryRecord_F_Subject";
-					expression="_this setVariable ['Subject',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="dynamicBulwarks";
-						};
-					};
-				};
-				nAttributes=5;
-			};
-		};
-		class Item11
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
 				position[]={1039.526,3.1360903,672.75702};
 			};
 			name="mainZeus";
@@ -945,7 +827,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item12
+		class Item11
 		{
 			dataType="Object";
 			class PositionInfo
