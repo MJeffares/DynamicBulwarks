@@ -13,6 +13,8 @@
 * infinite time option
 * add scroll wheel action to return to bulwark
 * use bounding boxes instead of target markers for spotting
+* only allow one player controlled support at a time
+* only remove fire-support spotting event handler (will also remove uav-radar one)
 **/
 
 params [
@@ -28,6 +30,94 @@ params [
 	["_spotting", true, [true]],
 	["_returnPlace", true, [true]]
 ];
+
+
+private ["_menu","_menuIndexed","_text","_submenu","_expression","_enable","_cursor","_icon"];
+
+if !(_aiControlled) then {
+
+
+	// disable support menu items that are player controlled (code based off communication menu refresh)
+	_menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
+
+	_menuIndexed = [];
+	{
+		_text = _x select 1;
+		_submenu = _x select 2;
+		_expression = _x select 3;
+
+		if ((_text find "(Player)") > -1) then {
+			_enable = "0";
+		} else {
+			_enable = _x select 4;
+		};
+
+		_cursor = _x select 5;
+		_icon = _x select 6;
+		_menuIndexed set [count _menuIndexed,[_text,[_foreachindex + 2],_submenu,-5,[["expression",_expression]],"1",_enable,_cursor]];
+	}
+	foreach _menu;
+
+	missionnamespace setvariable
+	[
+		"BIS_fnc_addCommMenuItem_menu",
+		[[localize "STR_rscMenu.hppRscGroupRootMenu_Items_Communication0",true]] + _menuIndexed
+	];
+
+	("BIS_fnc_addCommMenuItem" call bis_fnc_rscLayer) cutrsc ["RscCommMenuItems","plain"];
+
+	// disable support menu items that are player controlled
+	// _menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
+	// // diag_log "start text";
+	// // diag_log _menu;
+	// // _menuNames = [];
+	// // _playerControlledIndexes = [];
+	// {
+	// 	if (((_x select 1) find "(Player)") > -1) then {
+	// 		//_playerControlledIndexes pushBack (_x select 0);
+	// 		//(_x select 4) = 0;
+	// 		_x set [4, 0];
+	// 	};
+	// 	//_menuNames pushBack (_x select 1);
+	// } forEach _menu;
+
+	// _player setVariable ["BIS_fnc_addCommMenuItem_menu", _menu];
+
+};
+
+
+
+
+
+
+
+
+//add check if player already has support on its way, or is in support then disallow another call in
+
+// // disable support menu items that are player controlled
+// _menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
+// // diag_log "start text";
+// // diag_log _menu;
+// // _menuNames = [];
+// // _playerControlledIndexes = [];
+// {
+// 	if (((_x select 1) find "(Player)") > -1) then {
+// 		//_playerControlledIndexes pushBack (_x select 0);
+// 		(_x select 4) = 0;
+// 	};
+// 	//_menuNames pushBack (_x select 1);
+// } forEach _menu;
+
+// _player setVariable ["BIS_fnc_addCommMenuItem_menu", _menu ];
+
+
+
+
+
+// diag_log "output";
+// diag_log _menuNames;
+// diag_log "Player Controlled";
+// diag_log _playerControlledIndexes;
 
 // Calculate aircraft start position
 _angle = round random 360;
@@ -92,7 +182,7 @@ _wp setWayPointSpeed "LIMITED";
 _pilotGroup setCurrentWaypoint _wp;
 _pilotGroup setSpeedMode "LIMITED";
 
-// Wait until the vehicel is close to the AO before moving in the gunner / player
+// Wait until the vehicle is close to the AO before moving in the gunner / player
 waitUntil { (_vehicle distance2D _targetPos ) < (_targetRadius + 50) };
 
 // Save where the player was when they called in support
@@ -224,6 +314,36 @@ if !(_aiControlled) then {
 		_player setPosASL _newLoc;
 	};
 	_player setVariable ["In_Support", false, true];
+	
+
+	_menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
+
+	_menuIndexed = [];
+	{
+		_text = _x select 1;
+		_submenu = _x select 2;
+		_expression = _x select 3;
+
+		if ((_text find "(Player)") > -1) then {
+			_enable = "1";
+		} else {
+			_enable = _x select 4;
+		};
+
+		_cursor = _x select 5;
+		_icon = _x select 6;
+		_menuIndexed set [count _menuIndexed,[_text,[_foreachindex + 2],_submenu,-5,[["expression",_expression]],"1",_enable,_cursor]];
+	}
+	foreach _menu;
+
+	missionnamespace setvariable
+	[
+		"BIS_fnc_addCommMenuItem_menu",
+		[[localize "STR_rscMenu.hppRscGroupRootMenu_Items_Communication0",true]] + _menuIndexed
+	];
+
+	("BIS_fnc_addCommMenuItem" call bis_fnc_rscLayer) cutrsc ["RscCommMenuItems","plain"];
+
 };
 
 // Set a waypoint for the chopper to fly out of view
