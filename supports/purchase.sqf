@@ -24,7 +24,7 @@ if(player getVariable "killPoints" >= _shopPrice) then {
         [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
         [player, _shopClass] call BIS_fnc_addCommMenuItem;
     } else {
-        [format ["<t size='0.6' color='#ff3300'>Your support menu is already full, Not room for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
+        [format ["<t size='0.6' color='#ff3300'>Your support menu is already full, No room for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
         objPurchase = false;
     };
 } else {
