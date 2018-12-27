@@ -64,16 +64,16 @@ SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
-    [800,  "Recon UAV",     "reconUAV"],
-    [1950, "Paratroopers",  "paraDrop"],
-    [5430, "Missle CAS",    "airStrike"],
+    [500,  "Recon UAV",     "reconUAV"],
+    [1500, "Super Recon UAV", "reconSuperUAV"],
+    [2000, "Paratroopers",  "paraDrop"],
+    [1000, "Missle CAS",    "airStrike"],
+    [1500, "UH-80 Ghosthawk Fire Support (AI)", "ghosthawkAI"],
+    [2000, "UH-80 Ghosthawk Fire Support (Player)", "ghosthawkGunner"],
+    [2500, "AH-99 Blackfoot Fire Support (AI)", "blackfootAI"],
+    [3000, "AH-99 Blackfoot Fire Support (Player)", "blackfootGunner"],
     [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM",   "armaKart"],
-    [10, "Super Recon UAV", "reconSuperUAV"],
-    [40, "UH-80 Ghosthawk Fire Support (AI)", "ghosthawkAI"],
-    [40, "UH-80 Ghosthawk Fire Support (Player)", "ghosthawkGunner"],
-    [40, "AH-99 Blackfoot Fire Support (AI)", "blackfootAI"],
-    [40, "AH-99 Blackfoot Fire Support (Player)", "blackfootGunner"]
+    [6666, "ARMAKART TM",   "armaKart"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */
