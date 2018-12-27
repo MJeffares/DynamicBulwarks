@@ -73,9 +73,7 @@ BULWARK_SUPPORTITEMS = [
     [40, "UH-80 Ghosthawk Fire Support (AI)", "ghosthawkAI"],
     [40, "UH-80 Ghosthawk Fire Support (Player)", "ghosthawkGunner"],
     [40, "AH-99 Blackfoot Fire Support (AI)", "blackfootAI"],
-    [40, "AH-99 Blackfoot Fire Support (Player)", "blackfootGunner"],
-    [40, "V-44 X Blackfish Fire Support (AI)", "blackfishAI"],
-    [40, "V-44 X Blackfish Fire Support (Player)", "blackfishGunner"]
+    [40, "AH-99 Blackfoot Fire Support (Player)", "blackfootGunner"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */
