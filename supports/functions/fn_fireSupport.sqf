@@ -13,7 +13,6 @@
 * infinite time option
 * add scroll wheel action to return to bulwark
 * use bounding boxes instead of target markers for spotting
-* only allow one player controlled support at a time
 * only remove fire-support spotting event handler (will also remove uav-radar one)
 **/
 
@@ -31,12 +30,8 @@ params [
 	["_returnPlace", true, [true]]
 ];
 
-
-private ["_menu","_menuIndexed","_text","_submenu","_expression","_enable","_cursor","_icon"];
-
+//disable support menu items that are player controlled
 if !(_aiControlled) then {
-
-	//disable support menu items that are player controlled
 	_menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
 	diag_log "Before:";
 	diag_log _menu;
@@ -156,44 +151,181 @@ if (_aiControlled) then {
 
 	// if player controlled and spotting enabled we add targetting marks
 	if (_spotting) then {
-		addMissionEventHandler["Draw3D", {
-			{
-				if ((side _x) == east) then {
-					drawIcon3D [
-						"\a3\ui_f\data\IGUI\Cfg\Targeting\MarkedTarget_ca.paa",
-						[1,0,0,1],
-						(visiblePosition _x vectorAdd [0, 0, 1]),
-						1,
-						1,
-						45,
-						"",
-						1,
-						0.02, 
-						"TahomaB",
-						"center",
-						false
-					];
-				};
 
-				if ((side _x) == west) then {
-					drawIcon3D [
-						"\a3\ui_f\data\IGUI\Cfg\Targeting\MarkedTarget_ca.paa",
-						[0,0,1,1],
-						(visiblePosition _x vectorAdd [0, 0, 1]),
-						1,
-						1,
-						45,
-						"",
-						1,
-						0.02, 
-						"TahomaB",
-						"center",
-						false
-					];
-				};
+		{
+			[
+				"Whatever_EVH_Name_You_Want",
+				"onEachFrame",
+				{
+					private _veh = _this select 0;
+					private _bb = {
+						_bbx = [_this select 0 select 0, _this select 1 select 0];
+						_bby = [_this select 0 select 1, _this select 1 select 1];
+						_bbz = [_this select 0 select 2, _this select 1 select 2];
+						_arr = [];
+						0 = {
+							_y = _x;
+							0 = {
+								_z = _x;
+								0 = {
+									0 = _arr pushBack (_veh modelToWorld [_x,_y,_z]);
+								} count _bbx;
+							} count _bbz;
+							reverse _bbz;
+						} count _bby;
+						_arr pushBack (_arr select 0);
+						_arr pushBack (_arr select 1);
+						_arr
+					};
+					private _bbox = boundingBox _veh call _bb;
+					private _bboxr = boundingBoxReal _veh call _bb;
 
-			} forEach allUnits;
-		}];
+					for "_i" from 0 to 7 step 2 do {
+						drawLine3D [
+							_bbox select _i,
+							_bbox select (_i + 2),
+							[0,0,1,1]
+						];
+						drawLine3D [
+							_bboxr select _i,
+							_bboxr select (_i + 2),
+							[0,1,0,1]
+						];
+						drawLine3D [
+							_bbox select (_i + 2),
+							_bbox select (_i + 3),
+							[0,0,1,1]
+						];
+						drawLine3D [
+							_bboxr select (_i + 2),
+							_bboxr select (_i + 3),
+							[0,1,0,1]
+						];
+						drawLine3D [
+							_bbox select (_i + 3),
+							_bbox select (_i + 1),
+							[0,0,1,1]
+						];
+						drawLine3D [
+							_bboxr select (_i + 3),
+							_bboxr select (_i + 1),
+							[0,1,0,1]
+						];
+					};
+				},
+				[_x]
+			] call BIS_fnc_addStackedEventHandler;
+		} forEach allUnits;
+
+
+
+
+		// ["spottingEVH", "onEachFrame", {
+		// 	{
+		// 		if ((side _x) == east) then {
+		// 			_bbr = boundingBoxReal _x;
+		// 			_p1 = _bbr select 0;
+		// 			_p3 = _bbr select 1;
+		// 			_p2 = [_p1 select 0, _p1 select 1, _p3 select 2];
+		// 			_p4 = [_p2 select 0, _p2 select 1, _p1 select 2];
+
+		// 			drawLine3D [_p1, _p2, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p2, _p3, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p3, _p4, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p4, _p1, [0.9,0.1,0.1,0.9]];
+		// 		};
+
+		// 		if ((side _x) == west) then {
+		// 			_bbr = boundingBoxReal _x;
+		// 			_p1 = _bbr select 0;
+		// 			_p3 = _bbr select 1;
+		// 			_p2 = [_p1 select 0, _p1 select 1, _p3 select 2];
+		// 			_p4 = [_p2 select 0, _p2 select 1, _p1 select 2];
+
+		// 			drawLine3D [_p1, _p2, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p2, _p3, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p3, _p4, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p4, _p1, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p1, _p3, [0.1,0.1,0.9,0.9]];
+		// 		};
+
+		// 	} forEach allUnits;
+		// }] call BIS_fnc_addStackedEventHandler;
+
+
+
+
+		// addMissionEventHandler["Draw3D", {
+		// 	{
+		// 		if ((side _x) == east) then {
+		// 			_bbr = boundingBoxReal _x;
+		// 			_p1 = _bbr select 0;
+		// 			_p3 = _bbr select 1;
+		// 			_p2 = [_p1 select 0, _p1 select 1, _p3 select 2];
+		// 			_p4 = [_p2 select 0, _p2 select 1, _p1 select 2];
+
+		// 			drawLine3D [_p1, _p2, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p2, _p3, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p3, _p4, [0.9,0.1,0.1,0.9]];
+		// 			drawLine3D [_p4, _p1, [0.9,0.1,0.1,0.9]];
+		// 		};
+
+		// 		if ((side _x) == west) then {
+		// 			_bbr = boundingBoxReal _x;
+		// 			_p1 = _bbr select 0;
+		// 			_p3 = _bbr select 1;
+		// 			_p2 = [_p1 select 0, _p1 select 1, _p3 select 2];
+		// 			_p4 = [_p2 select 0, _p2 select 1, _p1 select 2];
+
+		// 			drawLine3D [_p1, _p2, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p2, _p3, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p3, _p4, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p4, _p1, [0.1,0.1,0.9,0.9]];
+		// 			drawLine3D [_p1, _p3, [0.1,0.1,0.9,0.9]];
+		// 		};
+
+		// 	} forEach allUnits;
+		// }];
+
+
+		// addMissionEventHandler["Draw3D", {
+		// 	{
+		// 		if ((side _x) == east) then {
+		// 			drawIcon3D [
+		// 				"\a3\ui_f\data\IGUI\Cfg\Targeting\MarkedTarget_ca.paa",
+		// 				[1,0,0,1],
+		// 				(visiblePosition _x vectorAdd [0, 0, 1]),
+		// 				1,
+		// 				1,
+		// 				45,
+		// 				"",
+		// 				1,
+		// 				0.02, 
+		// 				"TahomaB",
+		// 				"center",
+		// 				false
+		// 			];
+		// 		};
+
+		// 		if ((side _x) == west) then {
+		// 			drawIcon3D [
+		// 				"\a3\ui_f\data\IGUI\Cfg\Targeting\MarkedTarget_ca.paa",
+		// 				[0,0,1,1],
+		// 				(visiblePosition _x vectorAdd [0, 0, 1]),
+		// 				1,
+		// 				1,
+		// 				45,
+		// 				"",
+		// 				1,
+		// 				0.02, 
+		// 				"TahomaB",
+		// 				"center",
+		// 				false
+		// 			];
+		// 		};
+
+		// 	} forEach allUnits;
+		// }];
 	};
 };
 
@@ -248,7 +380,7 @@ if !(_aiControlled) then {
 	_player setVariable ["In_Support", false, true];
 	
 
-	//disable support menu items that are player controlled
+	//re-enable support menu items that are player controlled
 	_menu = _player getvariable ["BIS_fnc_addCommMenuItem_menu",[]];
 	diag_log "Before:";
 	diag_log _menu;
