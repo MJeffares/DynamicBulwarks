@@ -125,7 +125,6 @@ class ghosthawkGunner
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'ghosthawkGunner', 'B_Heli_Transport_01_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\attack_ca.paa";
-    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;
@@ -136,7 +135,6 @@ class blackfootAI
     text = "AH-99 Blackfoot Fire Support (AI)";
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'blackfootAI', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
-    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
@@ -149,7 +147,6 @@ class blackfootGunner
     submenu = "";
     expression = "[_this select 0, bulwarkCity, 'blackfootGunner', 'B_Heli_Attack_01_dynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\attack_ca.paa";
-    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;

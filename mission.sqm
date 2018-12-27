@@ -228,7 +228,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=12;
+		items=13;
 		class Item0
 		{
 			dataType="Group";
@@ -932,7 +932,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item11
+		class Item12
 		{
 			dataType="Object";
 			class PositionInfo
