@@ -50,4 +50,16 @@ switch (_type) do {
     case ("blackfishGunner"): {
         [_player, false, _aircraft, _target, [1], 250, BULWARK_RADIUS + 500] call supports_fnc_fireSupport;
     };
+    case ("mindConGas"): {
+    [_player, _target] call supports_fnc_mindConGas;
+    };
+    case ("droneControl"): {
+    [_player, _target] call supports_fnc_droneControl;
+    };
+    case ("mineField"): {
+    [_player, _target] call supports_fnc_mineField;
+    };
+    case ("telePlode"): {
+    [_player] call supports_fnc_telePlode;
+    };
 };

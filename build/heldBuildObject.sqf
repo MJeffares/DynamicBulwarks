@@ -1,8 +1,13 @@
+//Script no longer in use
+
 //params ["_buildObject", "_player", "_actionId", "_arguments"];
 _buildObject = _this select 0; // is actually player because action was added to player not the object they are carrying
 _player = _this select 1;
 _actionID = _this select 2;
 
+mainZeus addCuratorEditableObjects [[shopVehic], true];
+PLAYER_OBJECT_LIST pushBack shopVehic;
+hint "True";
 
 detach shopVehic;
 {[shopVehic, _x] remoteExec ["enableCollisionWith", 0];} forEach playableUnits;

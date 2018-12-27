@@ -31,6 +31,8 @@ class CfgFunctions
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
 	#include "build\Functions.hpp"
+	#include "hostiles\Functions.hpp"
+	#include "loot\Functions.hpp"
 };
 
 
@@ -51,6 +53,7 @@ class CfgRemoteExec
 		class ragePack {};
 		class say3DGlobal {};
 		class createBlur {};
+		class suiExplode{};
 	};
 };
 
@@ -70,6 +73,15 @@ class CfgDebriefing
 		pictureBackground = "";
 		picture = "KIA";
 		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+	class End2
+	{
+		title = "[BULWARK SAFE]";
+		subtitle = "You Won";
+		description = "Your bulwark is secure";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
 	};
 };
 
@@ -120,8 +132,42 @@ class CfgSounds
 	class pointsLootSound
 	{
 		name = "Points Loot Audio";
-		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
+		sound[] = {"\sound\lootPointsAudio.ogg", 10, 1, 100};
 		titles[] = {0,""};
+	};
+
+	class SuicideSound
+	{
+		name = "Suicide Bomber Sound";
+		sound[] = {"\sound\bomber.ogg", 15, 1, 100};
+		titles[] = {0,""};
+	};
+
+	class comNoise
+	{
+		name = "Com Noise";
+		sound[] = {"\sound\comNoise.ogg", 10, 1};
+		titles[] = {0,""};
+	};
+
+	class teleport
+	{
+		name = "teleport";
+		sound[] = {"\sound\teleport.ogg", 5, 1};
+		titles[] = {0,""};
+	};
+};
+
+//Notification for Special Waves
+class CfgNotifications
+{
+	class SpecialWarning
+	{
+		title = "WARNING!!";
+		iconPicture = "A3\ui_f\data\Map\Markers\Military\warning_CA.paa";
+		description = "%1";
+		color[] = {1,0,0,1};
+		duration = 5;
 	};
 };
 
@@ -170,6 +216,14 @@ class Params
 		default = 30;
 	};
 
+	class MAX_WAVES
+	{
+		title = "How Many Waves";
+		values[] = {"infinite", 20, 30, 40};
+		texts[] = {"Infinite", "20", "30", "40"};
+		default = "infinite";
+	};
+
 	class BULWARK_MEDIKIT
 	{
 		title = "Medikits in Bulwark";
@@ -208,6 +262,22 @@ class Params
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
 		default = 1;
+	};
+
+	class SPECIAL_WAVES
+	{
+		title = "Special Waves - suicide bombers, etc";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 1;
+	};
+
+	class BULWARK_LABEL_SPACE
+	{
+		title = " ";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
 	};
 
 	class BULWARK_LABEL
@@ -290,6 +360,14 @@ class Params
 		default = 16;
 	};
 
+	class POWERUP_LABEL_SPACE
+	{
+		title = " ";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
 	class POWERUP_LABEL
 	{
 		title = "====== Powerup Settings =====";
@@ -298,12 +376,20 @@ class Params
 		default = 0;
 	};
 
-	class PARATROOP_COUNT
+	class START_KILLPOINTS
 	{
-		title = "Paratrooper count";
-		values[] = {1, 2, 3, 4, 5, 6};
-		texts[] = {"1","2","3","4","5","6"};
-		default = 6;
+		title = "Kill points players start with";
+		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
+		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
+		default = 0;
+	};
+
+	class SUPPORT_MENU
+	{
+		title = "Find Satellite Dish to Unlock Supports";
+		values[] = {0, 1};
+		texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
+		default = 1;
 	};
 
 	class SCORE_KILL
@@ -330,12 +416,12 @@ class Params
 		default = 20;
 	};
 
-	class START_KILLPOINTS
+	class PARATROOP_COUNT
 	{
-		title = "Kill points players start with";
-		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
-		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
-		default = 1000;
+		title = "Paratrooper count";
+		values[] = {1, 2, 3, 4, 5, 6};
+		texts[] = {"1","2","3","4","5","6"};
+		default = 6;
 	};
 
 	class REMOVE_ITEMREFUND
@@ -344,6 +430,14 @@ class Params
 		values[] = {0, 1};
 		texts[] = {"No refund on remove", "Item refunded when removed"};
 		default = 1;
+	};
+
+	class REVIVE_LABEL_SPACE
+	{
+		title = "";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
 	};
 
 	class REVIVE_LABEL
@@ -376,9 +470,9 @@ class Params
 	class RESPAWN_TICKETS
 	{
 		title = "Tickets";
-		values[] = {0, 5, 10, 15, 20};
-		texts[] = {"0", "5", "10", "15", "20"};
-		default = 0;
+		values[] = {0, 5, 10, 15, 20, 50};
+		texts[] = {"0", "5", "10", "15", "20", "50"};
+		default = 20;
 	};
 
 	class RESPAWN_TIME
@@ -386,7 +480,7 @@ class Params
 		title = "Respawn Time";
 		values[] = {0, 5, 10, 20, 30};
 		texts[] = {"0", "5", "10", "20", "30"};
-		default = 10;
+		default = 5;
 	};
 
 };

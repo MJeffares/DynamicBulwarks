@@ -637,7 +637,7 @@ class Mission
 			a=150;
 			b=150;
 			id=84;
-			atlOffset=120.03973;
+			atlOffset=0.00048446655;
 		};
 		class Item2
 		{
@@ -649,7 +649,7 @@ class Mission
 			a=150;
 			b=150;
 			id=85;
-			atlOffset=85.835136;
+			atlOffset=-0.61751747;
 		};
 		class Item3
 		{
@@ -661,7 +661,6 @@ class Mission
 			a=150;
 			b=150;
 			id=86;
-			atlOffset=94.698883;
 		};
 		class Item4
 		{
@@ -673,7 +672,7 @@ class Mission
 			a=150;
 			b=150;
 			id=88;
-			atlOffset=-41.181427;
+			atlOffset=-0.709692;
 		};
 		class Item5
 		{
@@ -685,7 +684,6 @@ class Mission
 			a=150;
 			b=150;
 			id=93;
-			atlOffset=94.543243;
 		};
 		class Item6
 		{
@@ -697,7 +695,6 @@ class Mission
 			a=150;
 			b=150;
 			id=100;
-			atlOffset=141.7623;
 		};
 		class Item7
 		{
@@ -709,7 +706,7 @@ class Mission
 			a=150;
 			b=150;
 			id=101;
-			atlOffset=81.256668;
+			atlOffset=-0.69843292;
 		};
 		class Item8
 		{
@@ -721,7 +718,6 @@ class Mission
 			a=150;
 			b=150;
 			id=102;
-			atlOffset=98.114914;
 		};
 		class Item9
 		{
@@ -733,9 +729,118 @@ class Mission
 			a=150;
 			b=150;
 			id=103;
-			atlOffset=4.1068516;
 		};
 		class Item10
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={41.681,0,23.445};
+			};
+			id=115;
+			type="ModuleCreateDiaryRecord_F";
+			atlOffset=185.97;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCreateDiaryRecord_F_PresetTitle";
+					expression="_this setVariable ['PresetTitle',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Mission";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCreateDiaryRecord_F_Title";
+					expression="_this setVariable ['Title',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="About";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCreateDiaryRecord_F_Description";
+					expression="_this setVariable ['Description',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="You are unarmed and there are hostile untis moving towards you. Survive for as many waves as possible." \n "<br />" \n "<br /> " \n "Search buildings for weapons, equipment and supplies." \n "<br /> " \n "<br /> " \n "Kill enemies to earn points to spend at the Bulwark Box. Points can be used to purchase Building Supplies and Supports. Purchased Supports can be used via the Supports menu (0 - 8 on keyboard)." \n "<br />" \n "<br /> " \n "If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. Medikits can also be broken into 4 First Aid Kits from the scroll menu.";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCreateDiaryRecord_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=3;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ModuleCreateDiaryRecord_F_Subject";
+					expression="_this setVariable ['Subject',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="dynamicBulwarks";
+						};
+					};
+				};
+				nAttributes=5;
+			};
+		};
+		class Item11
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -745,7 +850,7 @@ class Mission
 			name="mainZeus";
 			id=116;
 			type="ModuleCurator_F";
-			atlOffset=54.350147;
+			atlOffset=189.10609;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -842,7 +947,7 @@ class Mission
 			};
 			id=123;
 			type="Land_Pier_Box_F";
-			atlOffset=65;
+			atlOffset=190.19;
 			class CustomAttributes
 			{
 				class Attribute0

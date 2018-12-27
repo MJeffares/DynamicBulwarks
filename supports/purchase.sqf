@@ -6,16 +6,18 @@
 *  Domain: Client
 **/
 
-_index = lbCurSel 1501;
-shopVehic = objNull;
+if  (SUPPORTMENU) then {
+  _index = lbCurSel 1501;
+  shopVehic = objNull;
 
-_shopItem = BULWARK_SUPPORTITEMS select _index;
-_shopPrice = (_shopItem) select 0;
-_shopName  = (_shopItem) select 1;
-_shopClass = (_shopItem) select 2;
+  _shopItem = BULWARK_SUPPORTITEMS select _index;
+  _shopPrice = (_shopItem) select 0;
+  _shopName  = (_shopItem) select 1;
+  _shopClass = (_shopItem) select 2;
 
-// Script was passed an invalid number
-if(_shopClass == "") exitWith {};
+  // Script was passed an invalid number
+  if(_shopClass == "") exitWith {};
+
 
 // Check that the player has enough kill points
 if(player getVariable "killPoints" >= _shopPrice) then {

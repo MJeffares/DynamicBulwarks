@@ -6,6 +6,8 @@ class build
         class sell {};
         class pickup {};
         class drop {};
-		class move {};
+        class reset{};
+		    class move {};
+        class place {};
     };
 };

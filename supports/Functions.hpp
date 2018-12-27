@@ -11,5 +11,9 @@ class supports
         class ragePack {};
         class armaKart {};
         class fireSupport {};
+        class mindConGas {};
+        class droneControl {};
+        class mineField {};
+        class telePlode{};
     };
 };
